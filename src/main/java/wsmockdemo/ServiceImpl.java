@@ -10,7 +10,7 @@ public class ServiceImpl implements ServiceInterface {
 	@WebMethod
 	@WebResult(name = "output", targetNamespace = "urn:net:atos:demo")
 	public Integer add(Integer a, Integer b) {
-		return a - b;
+		return a + b;
 	}
 
 }

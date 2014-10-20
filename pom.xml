@@ -5,6 +5,10 @@
 	<artifactId>wsmockdemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<properties>
+		<cxf.version>2.7.10</cxf.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<artifactId>junit</artifactId>
@@ -18,6 +22,28 @@
 			<version>1.9.5</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-api</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		
 
 	</dependencies>
 

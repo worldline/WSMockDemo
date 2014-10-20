@@ -23,10 +23,4 @@ public class HelloWorldImpl {
 		return service.add(a, b);
 	}
 
-	public static void main(String[] args) throws Exception {
-		String url = "http://localhost:8081/ws";
-		Endpoint endpoint = Endpoint.publish(url, new ServiceImpl());
-		System.out.println(new HelloWorldImpl(url).add(3, 2));
-		endpoint.stop();
-	}
 }
