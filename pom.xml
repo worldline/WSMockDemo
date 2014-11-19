@@ -43,8 +43,11 @@
 			<artifactId>cxf-api</artifactId>
 			<version>${cxf.version}</version>
 		</dependency>
-		
-
+		<dependency>
+		  <groupId>net.atos.xa.resourcelocator</groupId>
+		  <artifactId>xa-rl-core</artifactId>
+		  <version>2.2.1</version>
+		</dependency>		
 	</dependencies>
 
 	<build>

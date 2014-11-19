@@ -1,9 +1,13 @@
 package wsmockdemo;
 
+import javax.xml.namespace.QName;
+import javax.xml.ws.Binding;
 import javax.xml.ws.Endpoint;
 
 import junit.framework.Assert;
+import net.atos.xa.resourcelocator.ResourceLocator;
 
+import org.apache.cxf.jaxws.EndpointImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -37,22 +41,32 @@ public class HelloWorldTest {
 		
 		// wrap it in proxy
 		ServiceInterface serviceInterface = ServiceProxy.newInstance(serviceMock);
-		
+				
 		// publish the mock 
 		String url = "http://localhost:8081/ws";
-		Endpoint endpoint = Endpoint.publish(url, serviceInterface);
+		org.apache.cxf.jaxws.EndpointImpl endpoint = (EndpointImpl) Endpoint.create(serviceInterface);
+		QName serviceName = new QName("htt://www.atos.net", "HelloWorldService");
+		endpoint.setServiceName(serviceName);
+		endpoint.publish(url);
 		
 		// define mock behavior
 		Mockito.when(serviceMock.add(2, 3)).thenReturn(5);
 		
 		// call mock
-		ServiceInterface client = ServiceClient.createHelloWorldServiceClient(url);
-		int res = client.add(2, 3);
-		endpoint.stop();
+
+		try {
+			ServiceInterface client = ResourceLocator.lookup(ServiceInterface.class);
+			
+			int res = client.add(2, 3);
+			Assert.assertEquals(5, res);
+		} finally {
+			endpoint.stop();
+		}
 		
-		// assertions
-		Assert.assertEquals(5, res);
+
 		Mockito.verify(serviceMock).add(2, 3);
+		
+		
 	}
 
 	@Before
