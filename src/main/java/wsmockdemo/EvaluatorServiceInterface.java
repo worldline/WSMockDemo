@@ -5,9 +5,9 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 
 @WebService(targetNamespace = "urn:net:atos:demo")
-public interface ServiceInterface {
+public interface EvaluatorServiceInterface {
 	@WebMethod
 	@WebResult(name = "output", targetNamespace = "urn:net:atos:demo")
-	Integer add(Integer a, Integer b);
+	boolean evaluate(String expr);
 
 }
